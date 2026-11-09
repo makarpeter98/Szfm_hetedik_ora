@@ -62,4 +62,38 @@ public class PersonTest {
         String expected = "Person{" + "id= " + 4 + ", name = George Smith" + '}';
         assertEquals(expected, underTest1.toString());
     }
+
+    @Test
+    public void hashCodeShouldBeEqualForEqualPersons() {
+        Person p1 = new Person(4, "George Smith");
+        Person p2 = new Person(4, "George Smith");
+        assertEquals(p1, p2);
+        assertEquals(p1.hashCode(), p2.hashCode());
+    }
+
+    @Test
+    @Timeout(value = 1500, unit = TimeUnit.MILLISECONDS)
+    void test_this() throws InterruptedException {
+        assertTimeout(
+                Duration.ofMillis(5000),
+                () -> Thread.sleep(1000)
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource(chars = {'T', 'o', 'm', 'S', 'm', 'i', 't', 'h'})
+    void containsCharShouldReturnTrueForContainedChars(char input) {
+        assertTrue(
+                underTest2.nameContainsChar(input),
+                "char: " + input
+        );
+    }
+
+    @ParameterizedTest
+    @ValueSource()
+    void onallo_parameterezett_test(char input) {
+        /*
+        * az underTest1-re futtassatok le az x,y,z karaktereket, hogy szerepel-e az adott person neveben.
+        * */
+    }
 }
